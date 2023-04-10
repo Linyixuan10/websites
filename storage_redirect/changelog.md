@@ -1,5 +1,56 @@
 # Changelog
 
+## 8.4.2 (2023-03-22)
+
+- Fix the problem that from version 8.4.0, app is unable to use if "Dark theme" option is not set to "Follow system"
+
+## 8.4.1 (2023-03-17)
+
+- Fix the problem that in the last version, entering app list will crash the app if Enhance mode is not used
+
+## 8.4.0 (2023-03-12)
+
+- Fixed an issue where an app with an export rule (whether the rule is enabled or not) would be force stopped on first launch of the core service
+- [For Android 10 and earlier versions only] File Monitor no longer requires Shamiko to be installed (but please note that the hidden solution is still necessary, so File Monitor will be turned off after the update)
+- Fixed the problem that apps which only requests Android 13 new permissions was judged as not request any permissions (the previous version did not fix it properly)
+- For Chinese, Japanese and Korean language users, if the system does not provide a Medium (500) weight font, it will use the simulation implementation
+
+## 8.3.0 (2023-01-03)
+
+- Fixed the problem that apps that did not request any permissions above Android 11 were skipped (on Android 11 and above, apps without any permissions can also write files and folders in standard folders)
+- Fixed the problem that apps which only requests Android 13 new permissions was judged as not request any permissions
+
+## 8.2.2 (2022-12-05)
+
+- Add user approval step before requesting online rule
+
+## 8.2.1 (2022-11-22)
+
+- Better Android 13 support
+
+## 8.1.0 (2022-10-15)
+
+- Ensure apps with `Shared user ID` will use a consistent isolated storage folder
+- Fix some unnecessary checks are done when using the Zygisk version of the enhance module
+- An early fix for an issue that would prevent "limited mode" from being available in the next Android version
+
+## 8.0.0 (2022-08-21)
+
+- New File monitor implemention
+- Disable "Fix reanme" which is uncessary on Android 10 and above
+- Fix the problem that reinstalled app which has "uninstall but keep data" before is not displayed
+
+The difference between old and new File monitor:
+
+Old:
+- Need to inject into all are processes (which means this may be detected, especially Zygisk version)
+- Can't record operations performed by syscalls and native libraries loaded later
+
+New:
+- No need to inject app processes
+- Can record operations that were previously unrecordable, but cannot record operations performed by isolated apps
+- Requires Android 11 and above (if the device runs Android 10 or older, the old version will still be used)
+
 ## 7.5.3 (2022-06-14)
 
 - Fix v7.5.2 is broken on Android 10 and below
